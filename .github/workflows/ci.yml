@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev/billiard-sports-analyzer-src-codes
+  pull_request:
+    branches:
+      - dev/billiard-sports-analyzer-src-codes
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up C++ environment
+      run: sudo apt-get install -y g++ cmake
+
+    - name: Install OpenCV
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libopencv-dev
+
+    - name: Configure with CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
+
+    - name: Build with CMake
+      run: |
+        cd build
+        cmake --build .
+
+    - name: Run Tests
+      run: |
+        cd build
+        ctest --output-on-failure
