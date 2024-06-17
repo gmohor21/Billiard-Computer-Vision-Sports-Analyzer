@@ -28,7 +28,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ..
+        cmake .. -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
 
     - name: Build with CMake
       run: |
