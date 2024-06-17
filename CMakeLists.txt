@@ -18,7 +18,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 file(GLOB_RECURSE SOURCE_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
 # Add executable target
-add_executable(BilliardAnalysis main.cpp ball_detection.cpp field_detection.cpp segmentation.cpp visualization.cpp evaluation.cpp output_data.cpp)
+add_executable(BilliardAnalysis src/main.cpp ball_detection.cpp field_detection.cpp segmentation.cpp visualization.cpp evaluation.cpp output_data.cpp)
 
 # Link OpenCV libraries
 target_link_libraries(BilliardAnalysis ${OpenCV_LIBS})
